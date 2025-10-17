@@ -1,0 +1,129 @@
+Registered derived quantity calculator: ':Pm_vals'
+Registered derived quantity calculator: ':Nm_vals'
+Registered derived quantity calculator: ':A_vals'
+Registered derived quantity calculator: ':B_vals'
+Registered derived quantity calculator: ':C_vals'
+Registered derived quantity calculator: ':D_vals'
+Registered derived quantity calculator: ':O_vals'
+Registered derived quantity calculator: ':Omn_vals'
+Registered derived quantity calculator: ':Q_vals'
+Registered derived quantity calculator: ':Qmn_vals'
+Registered derived quantity calculator: ':H_vals'
+--- Active Observables ---
+- Main.Observables.GeneralExpect{@NamedTuple{m::Int64, n::Int64}} -> om1n0_expect.dat
+- Main.Observables.GeneralExpect{@NamedTuple{m::Int64, n::Int64}} -> om1n1_expect.dat
+- Main.Observables.GeneralExpect{@NamedTuple{m::Int64, n::Int64}} -> qm1n0_expect.dat
+- Main.Observables.GeneralExpect{@NamedTuple{m::Int64, n::Int64}} -> qm1n1_expect.dat
+- Main.Observables.GeneralTCorr{Int64, @NamedTuple{m::Int64, n::Int64}, @NamedTuple{m::Int64, n::Int64}} -> om1n1m1n1_tcorr.dat
+- Main.Observables.GeneralTCorr{Int64, @NamedTuple{m::Int64, n::Int64}, @NamedTuple{m::Int64, n::Int64}} -> om1n0m1n0_tcorr.dat
+--------------------------
+Creating output directory: data/L10_S2_T1000000_Tthermal1000000/run4
+[Rank 0] Using random seed = 8573358021900042118
+Thermalizing... 2.0% complete. Elapsed: 0.0s.
+Thermalizing... 4.0% complete. Elapsed: 0.0s.
+Thermalizing... 6.0% complete. Elapsed: 0.01s.
+Thermalizing... 8.0% complete. Elapsed: 0.01s.
+Thermalizing... 10.0% complete. Elapsed: 0.01s.
+Thermalizing... 12.0% complete. Elapsed: 0.01s.
+Thermalizing... 14.0% complete. Elapsed: 0.02s.
+Thermalizing... 16.0% complete. Elapsed: 0.02s.
+Thermalizing... 18.0% complete. Elapsed: 0.02s.
+Thermalizing... 20.0% complete. Elapsed: 0.02s.
+Thermalizing... 22.0% complete. Elapsed: 0.02s.
+Thermalizing... 24.0% complete. Elapsed: 0.03s.
+Thermalizing... 26.0% complete. Elapsed: 0.03s.
+Thermalizing... 28.0% complete. Elapsed: 0.03s.
+Thermalizing... 30.0% complete. Elapsed: 0.03s.
+Thermalizing... 32.0% complete. Elapsed: 0.04s.
+Thermalizing... 34.0% complete. Elapsed: 0.04s.
+Thermalizing... 36.0% complete. Elapsed: 0.04s.
+Thermalizing... 38.0% complete. Elapsed: 0.04s.
+Thermalizing... 40.0% complete. Elapsed: 0.04s.
+Thermalizing... 42.0% complete. Elapsed: 0.05s.
+Thermalizing... 44.0% complete. Elapsed: 0.05s.
+Thermalizing... 46.0% complete. Elapsed: 0.05s.
+Thermalizing... 48.0% complete. Elapsed: 0.05s.
+Thermalizing... 50.0% complete. Elapsed: 0.06s.
+Thermalizing... 52.0% complete. Elapsed: 0.06s.
+Thermalizing... 54.0% complete. Elapsed: 0.06s.
+Thermalizing... 56.0% complete. Elapsed: 0.06s.
+Thermalizing... 58.0% complete. Elapsed: 0.06s.
+Thermalizing... 60.0% complete. Elapsed: 0.07s.
+Thermalizing... 62.0% complete. Elapsed: 0.07s.
+Thermalizing... 64.0% complete. Elapsed: 0.07s.
+Thermalizing... 66.0% complete. Elapsed: 0.07s.
+Thermalizing... 68.0% complete. Elapsed: 0.08s.
+Thermalizing... 70.0% complete. Elapsed: 0.08s.
+Thermalizing... 72.0% complete. Elapsed: 0.08s.
+Thermalizing... 74.0% complete. Elapsed: 0.08s.
+Thermalizing... 76.0% complete. Elapsed: 0.08s.
+Thermalizing... 78.0% complete. Elapsed: 0.09s.
+Thermalizing... 80.0% complete. Elapsed: 0.09s.
+Thermalizing... 82.0% complete. Elapsed: 0.09s.
+Thermalizing... 84.0% complete. Elapsed: 0.09s.
+Thermalizing... 86.0% complete. Elapsed: 0.1s.
+Thermalizing... 88.0% complete. Elapsed: 0.1s.
+Thermalizing... 90.0% complete. Elapsed: 0.1s.
+Thermalizing... 92.0% complete. Elapsed: 0.1s.
+Thermalizing... 94.0% complete. Elapsed: 0.1s.
+Thermalizing... 96.0% complete. Elapsed: 0.11s.
+Thermalizing... 98.0% complete. Elapsed: 0.11s.
+Thermalizing... 100.0% complete. Elapsed: 0.11s.
+Measuring... 2.0% complete. Elapsed: 0.3s.
+Measuring... 4.0% complete. Elapsed: 0.37s.
+Measuring... 6.0% complete. Elapsed: 0.44s.
+Measuring... 8.0% complete. Elapsed: 0.5s.
+Measuring... 10.0% complete. Elapsed: 0.57s.
+Measuring... 12.0% complete. Elapsed: 0.63s.
+Measuring... 14.0% complete. Elapsed: 0.7s.
+Measuring... 16.0% complete. Elapsed: 0.77s.
+Measuring... 18.0% complete. Elapsed: 0.84s.
+Measuring... 20.0% complete. Elapsed: 0.91s.
+Measuring... 22.0% complete. Elapsed: 0.98s.
+Measuring... 24.0% complete. Elapsed: 1.04s.
+Measuring... 26.0% complete. Elapsed: 1.11s.
+Measuring... 28.0% complete. Elapsed: 1.18s.
+Measuring... 30.0% complete. Elapsed: 1.25s.
+Measuring... 32.0% complete. Elapsed: 1.32s.
+Measuring... 34.0% complete. Elapsed: 1.39s.
+Measuring... 36.0% complete. Elapsed: 1.45s.
+Measuring... 38.0% complete. Elapsed: 1.52s.
+Measuring... 40.0% complete. Elapsed: 1.59s.
+Measuring... 42.0% complete. Elapsed: 1.66s.
+Measuring... 44.0% complete. Elapsed: 1.73s.
+Measuring... 46.0% complete. Elapsed: 1.8s.
+Measuring... 48.0% complete. Elapsed: 1.87s.
+Measuring... 50.0% complete. Elapsed: 1.93s.
+Measuring... 52.0% complete. Elapsed: 2.0s.
+Measuring... 54.0% complete. Elapsed: 2.07s.
+Measuring... 56.0% complete. Elapsed: 2.14s.
+Measuring... 58.0% complete. Elapsed: 2.21s.
+Measuring... 60.0% complete. Elapsed: 2.28s.
+Measuring... 62.0% complete. Elapsed: 2.35s.
+Measuring... 64.0% complete. Elapsed: 2.41s.
+Measuring... 66.0% complete. Elapsed: 2.48s.
+Measuring... 68.0% complete. Elapsed: 2.55s.
+Measuring... 70.0% complete. Elapsed: 2.62s.
+Measuring... 72.0% complete. Elapsed: 2.69s.
+Measuring... 74.0% complete. Elapsed: 2.76s.
+Measuring... 76.0% complete. Elapsed: 2.83s.
+Measuring... 78.0% complete. Elapsed: 2.9s.
+Measuring... 80.0% complete. Elapsed: 2.97s.
+Measuring... 82.0% complete. Elapsed: 3.03s.
+Measuring... 84.0% complete. Elapsed: 3.1s.
+Measuring... 86.0% complete. Elapsed: 3.17s.
+Measuring... 88.0% complete. Elapsed: 3.23s.
+Measuring... 90.0% complete. Elapsed: 3.3s.
+Measuring... 92.0% complete. Elapsed: 3.37s.
+Measuring... 94.0% complete. Elapsed: 3.43s.
+Measuring... 96.0% complete. Elapsed: 3.5s.
+Measuring... 98.0% complete. Elapsed: 3.57s.
+Measuring... 100.0% complete. Elapsed: 3.63s.
+[Rank 0] Simulation finished in: 3.64 seconds
+[Rank 0] Saved: om1n0_expect.dat
+[Rank 0] Saved: om1n1_expect.dat
+[Rank 0] Saved: qm1n0_expect.dat
+[Rank 0] Saved: qm1n1_expect.dat
+[Rank 0] Saved: om1n1m1n1_tcorr.dat
+[Rank 0] Saved: om1n0m1n0_tcorr.dat
+[Rank 0] All tasks complete. Results saved to data/L10_S2_T1000000_Tthermal1000000/run4
