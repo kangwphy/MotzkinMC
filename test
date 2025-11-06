@@ -9,20 +9,21 @@ export TMPDIR=/tmp
 #     exit 1
 # fi
 
-L=10
+L=200
 # T=500000000
 # Tthermal=1000000000
-T=1000000
-Tthermal=1000000
+T=10000000
+Tthermal=10000000
 # T=20000
 # Tthermal=10000
-taskid=4
+taskid=1
 
 # export JULIA_DEPOT_PATH="~/.julia_old"
 # srun julia main.jl 
-S=2
+S=1
+period_idx=2
 echo $taskid $S $L $T $Tthermal
 # 把错误输出到同一个文件 (Redirecting error to the same file)
 # Run the Julia script with mpiexec, redirecting both stdout and stderr
-julia code/main_OQ.jl $L $T $Tthermal $taskid $S all > logs/L${L}S${S}T${T}Tthm${Tthermal}_${taskid} 2>&1  &
+julia code/main.jl $L $T $Tthermal $taskid $S $period_idx > logs/L${L}S${S}T${T}Tthm${Tthermal}_${taskid} 2>&1  &
 wait

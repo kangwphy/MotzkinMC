@@ -1,0 +1,8 @@
+L = 200
+S = 1
+T = 1000000
+Tthermal = 1000000
+run_id = 4
+mode = all
+interval = 1
+num_processes = 1

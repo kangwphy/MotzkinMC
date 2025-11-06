@@ -133,7 +133,7 @@ end
 get_filename(obs::GeneralTCorr) = obs.filename
 get_header(obs::GeneralTCorr) = obs.header
 get_data(obs::GeneralTCorr) = obs.final_corr
-get_xaxis(obs::GeneralTCorr, L::Int, tmea::Vector{Int}) = obs.tmea
+get_xaxis(obs::GeneralTCorr, L::Int, tmea::Vector{Int}) = tmea
 
 function finalize!(obs::GeneralTCorr, total_measurements::Int)
     finalize_time_correlation!(obs, total_measurements)

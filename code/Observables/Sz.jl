@@ -83,6 +83,7 @@ function measure!(obs::SzSzTCorr, sys, workspace)
     end
     current_buffer_idx = (workspace.t - 1) % sys.buffer_size + 1
     current_Z = view(sys.Z_history, :, current_buffer_idx)
+    
     for (idx, lag) in enumerate(obs.tmea)
         if workspace.t - lag > sys.Tthermal
             past_buffer_idx = (workspace.t - lag - 1) % sys.buffer_size + 1
@@ -93,6 +94,8 @@ function measure!(obs::SzSzTCorr, sys, workspace)
             obs.num_lag_measurements[idx] += 1
         end
     end
+    # @show obs.mean_t_sum
+    # AAA
 end
 
 function finalize!(obs::SzSzTCorr, total_measurements::Int)

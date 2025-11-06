@@ -159,10 +159,14 @@ function RunAndMeasure!(sys::BracketSystem, interval::Int, observables::Vector{<
 
     total_measurements = 0
     start_time = time()
-
+    # total_steps = Int64(total_simulation_time/interval) #### rescaled t
+    
     @inbounds for t in 1:total_simulation_time
         # --- Step 1: Perform Monte Carlo update step ---
-        update!(sys)
+        #### Each step consists of `interval` updates
+        for _ in 1:interval
+            update!(sys)
+        end
 
         # --- Step 2: Update shared history buffer (if needed) ---
         if sys.use_history
@@ -176,12 +180,6 @@ function RunAndMeasure!(sys::BracketSystem, interval::Int, observables::Vector{<
             # Create the smart workspace. No calculations happen here!
             workspace = MeasurementWorkspace(t, sys.BracketConfig, sys.S)
             
-            # # Create the workspace with pre-calculated quantities for this step
-            # workspace = MeasurementWorkspace(t, 
-            #     MeasureO_SpinS!(workspace_O, sys.BracketConfig, S),
-            #     height_profile!(workspace_H, sys.BracketConfig),
-            # )
-
             # Delegate measurement to each registered observable
             # When an observable calls `workspace.H_vals`, the logic we defined above
             # will be triggered automatically.

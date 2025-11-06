@@ -30,8 +30,8 @@ taskid=$1
 # export JULIA_DEPOT_PATH="~/.julia_old"
 # srun julia main.jl 
 S=$2
-echo $taskid $S $L $T $Tthermal
+echo $taskid $S $L $T $Tthermal $idx 
 # 把错误输出到同一个文件 (Redirecting error to the same file)
 # Run the Julia script with mpiexec, redirecting both stdout and stderr
-mpiexec -n $NUM_PROCS julia code/main.jl $L $T $Tthermal $taskid $S all > logs/L${L}S${S}T${T}Tthm${Tthermal}_${taskid} 2>&1  &
+mpiexec -n $NUM_PROCS julia code/main.jl $L $T $Tthermal $taskid $S $idx > logs/L${L}S${S}T${T}Tthm${Tthermal}_${taskid} 2>&1  &
 wait

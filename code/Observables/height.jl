@@ -90,7 +90,7 @@ mutable struct HeightTimeCorr <: AbstractObservable
 end
 
 get_filename(obs::HeightTimeCorr) = "hh_tcorr.dat"
-get_header(obs::HeightTimeCorr) = "t\tHH_t_Avg\tHH_t_Err"
+get_header(obs::HeightTimeCorr) = "t\thh_t_Avg\thh_t_Err"
 get_data(obs::HeightTimeCorr) = obs.final_corr
 get_xaxis(obs::HeightTimeCorr, L::Int, tmea::Vector{Int}) = tmea
 
@@ -151,7 +151,7 @@ end
 # ... (constructor, get_filename, etc. are unchanged) ...
 
 get_filename(obs::HeightDiffusion) = "hd_tcorr.dat"
-get_header(obs::HeightDiffusion) = "t\tHD_t_Avg\tHD_t_Err"
+get_header(obs::HeightDiffusion) = "t\thd_t_Avg\thd_t_Err"
 get_data(obs::HeightDiffusion) = obs.final_A
 get_xaxis(obs::HeightDiffusion, L::Int, tmea::Vector{Int}) = tmea
 
