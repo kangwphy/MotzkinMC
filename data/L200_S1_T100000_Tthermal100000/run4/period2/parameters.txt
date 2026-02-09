@@ -1,8 +1,0 @@
-L = 200
-S = 1
-T = 100000
-Tthermal = 100000
-run_id = 4
-mode = all
-interval = 20
-num_processes = 1

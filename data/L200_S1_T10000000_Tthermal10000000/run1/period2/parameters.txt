@@ -1,8 +1,0 @@
-L = 200
-S = 1
-T = 10000000
-Tthermal = 10000000
-run_id = 1
-period_idx = 2
-interval = 20
-num_processes = 1

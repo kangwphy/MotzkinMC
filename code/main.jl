@@ -69,9 +69,7 @@ function main()
         push!(observables_to_run, create_observable("h_expect", L, Int64[]))
         push!(observables_to_run, create_observable("szsz_tcorr", L, tmea))
         push!(observables_to_run, create_observable("hh_tcorr", L, tmea))
-        push!(observables_to_run, create_observable("aa_tcorr", L, tmea))
-        push!(observables_to_run, create_observable("a_expect", L, Int64[]))
-        # push!(observables_to_run, create_observable("hd_tcorr", L, tmea))
+        push!(observables_to_run, create_observable("hd_tcorr", L, tmea))
     elseif task == "abcd"
         push!(observables_to_run, create_observable("a_expect", L, Int64[]))
         push!(observables_to_run, create_observable("b_expect", L, Int64[]))
@@ -110,7 +108,32 @@ function main()
     elseif task == "q"
         push!(observables_to_run, create_observable("qmn_expect", L, Int64[]; m=1, n = 1))
         push!(observables_to_run, create_observable("qmn_tcorr", L, tmea; m =1, n = 1))
+    elseif task == "all"
+        push!(observables_to_run, create_observable("sz_expect", L, Int64[]))
+        push!(observables_to_run, create_observable("h_expect", L, Int64[]))
+        push!(observables_to_run, create_observable("szsz_tcorr", L, tmea))
+        push!(observables_to_run, create_observable("hh_tcorr", L, tmea))
+        push!(observables_to_run, create_observable("hd_tcorr", L, tmea))
+
+        push!(observables_to_run, create_observable("a_expect", L, Int64[]))
+        push!(observables_to_run, create_observable("b_expect", L, Int64[]))
+        push!(observables_to_run, create_observable("aa_tcorr", L, tmea))
+        push!(observables_to_run, create_observable("bb_tcorr", L, tmea))
+        if S >= 2
+            push!(observables_to_run, create_observable("c_expect", L, Int64[]))
+            push!(observables_to_run, create_observable("d_expect", L, Int64[]))
+            push!(observables_to_run, create_observable("cc_tcorr", L, tmea))
+            push!(observables_to_run, create_observable("dd_tcorr", L, tmea))
+        end
+
+        push!(observables_to_run, create_observable("omn_expect", L, Int64[]; m=1, n = 1))
+        push!(observables_to_run, create_observable("omn_tcorr", L, tmea; m =1, n = 1))
+
+        push!(observables_to_run, create_observable("qmn_expect", L, Int64[]; m=1, n = 1))
+        push!(observables_to_run, create_observable("qmn_tcorr", L, tmea; m =1, n = 1))
         
+        push!(observables_to_run, create_observable("omnqmn_tcorr", L, tmea; m =1, n = 1))
+            
     end
 
     needs_time_obs = !isempty(tmea)
