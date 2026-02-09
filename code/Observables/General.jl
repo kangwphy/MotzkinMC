@@ -161,18 +161,6 @@ function _measure_tcorr_work!(obs::GeneralTCorr, t::Int, L::Int, Tthermal::Int, 
             past_buffer_idx = (t - lag - 1) % obs._buffer_size + 1
             past_op_values_0 = view(obs._history_buffer_0, :, past_buffer_idx)
             
-            # --- DEBUG: Check if past buffer slot was actually written ---
-            past_sum = sum(past_op_values_0)
-            curr_sum = sum(current_op_values_0)
-            if obs.num_lag_measurements[idx] < 5  # Only print first few
-                println("[DEBUG TCorr] t=$t, lag=$lag, past_t=$(t-lag), " *
-                        "buffer_idx=$buffer_idx, past_buffer_idx=$past_buffer_idx, " *
-                        "sum(past)=$past_sum, sum(current)=$curr_sum, " *
-                        "all_zero_past=$(all(x->x==0, past_op_values_0)), " *
-                        "num_meas_so_far=$(obs.num_lag_measurements[idx])")
-            end
-            # --- END DEBUG ---
-
             obs.prod_sum[idx] += dot(current_op_values_t, past_op_values_0) / L
             obs.mean_t_sum[idx] += sum(current_op_values_t) / L
             obs.mean_0_sum[idx] += sum(past_op_values_0) / L

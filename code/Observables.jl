@@ -154,7 +154,7 @@ end
 function finalize_time_correlation!(obs, total_measurements::Int)
     for idx in 1:length(obs.tmea)
         num_meas = obs.num_lag_measurements[idx]
-        @show "final",obs.prod_sum[1]
+        # @show "final",obs.tmea[idx],num_meas
         if num_meas > 0
             avg_prod = obs.prod_sum[idx] / num_meas
             avg_mean_t = obs.mean_t_sum[idx] / num_meas

@@ -67,13 +67,15 @@ function get_periods(L::Int, config::Dict)
     fallback_L_index = findfirst(k -> k > L, sorted_Ls)
     
     local fallback_L
-    if fallback_L_index !== nothing
+    if fallback_L_index !== nothing && fallback_L_index > 1
         # Case 2: Found a smaller L to fall back on
-        fallback_L = sorted_Ls[fallback_L_index]
+        fallback_L = sorted_Ls[fallback_L_index-1]
         @warn "No exact periods config for L = $L. Falling back to settings for nearest smaller size L = $fallback_L."
+    elseif fallback_L_index == 1
+        fallback_L = sorted_Ls[1]
     else
         # Case 3: Current L is smaller than all keys, use the smallest available config
-        fallback_L = sorted_Ls[1]
+        fallback_L = sorted_Ls[end]
         @warn "No exact periods config for L = $L. Falling back to settings for smallest available size L = $fallback_L."
     end
     

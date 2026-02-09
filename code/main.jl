@@ -61,8 +61,7 @@ function main()
 
     tmea0 = generate_log_spaced_times(L, z, total_points, periods; 
                                     max_scaled_time=0.5,
-                                    period_index=period_idx)  
-    tmea0=[0,2,5]                         
+                                    period_index=period_idx)                        
     tmea = Int64.(tmea0/interval)  
 
     if task == "basic"

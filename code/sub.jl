@@ -110,19 +110,19 @@ end
 #     return h_vals
 # end
 
-function MeasureC!(Cvals::Vector{Int}, config::Vector{Int})
-    @inbounds for i in 1:length(config)
-        sz_abs = abs(config[i])
-        if sz_abs == 2
-            Cvals[i] = 1
-        elseif sz_abs == 1
-            Cvals[i] = -1
-        else
-            Cvals[i] = 0
-        end
-    end
-    return Cvals
-end
+# function MeasureC!(Cvals::Vector{Int}, config::Vector{Int})
+#     @inbounds for i in 1:length(config)
+#         sz_abs = abs(config[i])
+#         if sz_abs == 2
+#             Cvals[i] = 1
+#         elseif sz_abs == 1
+#             Cvals[i] = -1
+#         else
+#             Cvals[i] = 0
+#         end
+#     end
+#     return Cvals
+# end
 function update!(sys::BracketSystem)
     L = sys.L
     S = sys.S

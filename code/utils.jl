@@ -105,7 +105,6 @@ function gather_process_save(obs::AbstractObservable, comm::MPI.Comm, output_dir
 
     if rank == 0
         xaxis = get_xaxis(obs, L, tmea)
-        @show xaxis
         avg = [mean(view(gathered_data, i, :)) for i in 1:length(xaxis)]
         err = [std(view(gathered_data, i, :)) / sqrt(MPIsize) for i in 1:length(xaxis)]
         
