@@ -88,14 +88,29 @@ function measure!(obs::SzSzTCorr, sys, workspace)
         if workspace.t - lag > sys.Tthermal
             past_buffer_idx = (workspace.t - lag - 1) % sys.buffer_size + 1
             past_Z = view(sys.Z_history, :, past_buffer_idx)
+
+            # --- DEBUG: Compare with GeneralTCorr's behavior ---
+            if obs.num_lag_measurements[idx] < 5
+                println("[DEBUG SzTCorr] t=$(workspace.t), lag=$lag, past_t=$(workspace.t-lag), " *
+                        "Tthermal=$(sys.Tthermal), condition=($(workspace.t)-$(lag) > $(sys.Tthermal)) = $(workspace.t - lag > sys.Tthermal), " *
+                        "sum(past_Z)=$(sum(past_Z)), all_zero=$(all(x->x==0, past_Z)), " *
+                        "num_meas_so_far=$(obs.num_lag_measurements[idx])")
+            end
+            # --- END DEBUG ---
+
             obs.prod_sum[idx] += dot(current_Z, past_Z) / sys.L
             obs.mean_t_sum[idx] += sum(current_Z) / sys.L
             obs.mean_0_sum[idx] += sum(past_Z) / sys.L
             obs.num_lag_measurements[idx] += 1
+        else
+            # --- DEBUG: Show when SzTCorr SKIPS but GeneralTCorr would NOT ---
+            if obs.num_lag_measurements[idx] == 0 && workspace.t - lag > 0
+                println("[DEBUG SzTCorr SKIP] t=$(workspace.t), lag=$lag, past_t=$(workspace.t-lag), " *
+                        "Tthermal=$(sys.Tthermal) → SKIPPED (GeneralTCorr would have measured!)")
+            end
+            # --- END DEBUG ---
         end
     end
-    # @show obs.mean_t_sum
-    # AAA
 end
 
 function finalize!(obs::SzSzTCorr, total_measurements::Int)

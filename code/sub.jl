@@ -69,46 +69,46 @@ end
 
 
 
-"""
-Measures the O operator for the generalized Spin-S model.
-O = ∑ₖ|dᵏuᵏ⟩⟨00|, where k runs from 1 to S.
-Classical Oc = ∑ₖ(|dᵏuᵏ⟩⟨dᵏuᵏ| + |00⟩⟨00|).
-"""
-function MeasureO_SpinS!(Ovals::Vector{Int}, config::Vector{Int}, S::Int)
-    L = length(config)
-    @inbounds for i in 1:L
-        j = (i % L) + 1
-        l, r = config[i], config[j]
-        Ovals[i] = (l == 0 && r == 0) ? S : ((l < 0 && l == -r) ? 1 : 0)  # ∑ₖ|dᵏuᵏ⟩⟨00|
-    end
-    return Ovals
-end
-"""
-Measures the O operator for the generalized Spin-S model.
-O = ∑ₖ|dᵏuᵏ⟩⟨00|, where k runs from 1 to S.
-Classical Oc = ∑ₖ(|uᵏdᵏ⟩⟨uᵏdᵏ| + |00⟩⟨00|).
-"""
-function MeasureQ_SpinS!(Qvals::Vector{Int}, config::Vector{Int}, S::Int)
-    L = length(config)
-    @inbounds for i in 1:L
-        j = (i % L) + 1
-        l, r = config[i], config[j]
-        Qvals[i] = (l == 0 && r == 0) ? S : ((l > 0 && l == -r) ? 1 : 0)  # ∑ₖ|uᵏdᵏ⟩⟨00|
-    end
-    return Qvals
-end
-"""
-Calculates the height profile h(x) from a spin configuration Sz(x).
-h(x) = sum_{i=1 to x} Sz(i).
-"""
-function height_profile!(h_vals::AbstractVector{Int}, config::Vector{Int})
-    current_height = 0
-    @inbounds for i in 1:length(config)
-        current_height += config[i]
-        h_vals[i] = current_height
-    end
-    return h_vals
-end
+# """
+# Measures the O operator for the generalized Spin-S model.
+# O = ∑ₖ|dᵏuᵏ⟩⟨00|, where k runs from 1 to S.
+# Classical Oc = ∑ₖ(|dᵏuᵏ⟩⟨dᵏuᵏ| + |00⟩⟨00|).
+# """
+# function MeasureO_SpinS!(Ovals::Vector{Int}, config::Vector{Int}, S::Int)
+#     L = length(config)
+#     @inbounds for i in 1:L
+#         j = (i % L) + 1
+#         l, r = config[i], config[j]
+#         Ovals[i] = (l == 0 && r == 0) ? S : ((l < 0 && l == -r) ? 1 : 0)  # ∑ₖ|dᵏuᵏ⟩⟨00|
+#     end
+#     return Ovals
+# end
+# """
+# Measures the O operator for the generalized Spin-S model.
+# O = ∑ₖ|dᵏuᵏ⟩⟨00|, where k runs from 1 to S.
+# Classical Oc = ∑ₖ(|uᵏdᵏ⟩⟨uᵏdᵏ| + |00⟩⟨00|).
+# """
+# function MeasureQ_SpinS!(Qvals::Vector{Int}, config::Vector{Int}, S::Int)
+#     L = length(config)
+#     @inbounds for i in 1:L
+#         j = (i % L) + 1
+#         l, r = config[i], config[j]
+#         Qvals[i] = (l == 0 && r == 0) ? S : ((l > 0 && l == -r) ? 1 : 0)  # ∑ₖ|uᵏdᵏ⟩⟨00|
+#     end
+#     return Qvals
+# end
+# """
+# Calculates the height profile h(x) from a spin configuration Sz(x).
+# h(x) = sum_{i=1 to x} Sz(i).
+# """
+# function height_profile!(h_vals::AbstractVector{Int}, config::Vector{Int})
+#     current_height = 0
+#     @inbounds for i in 1:length(config)
+#         current_height += config[i]
+#         h_vals[i] = current_height
+#     end
+#     return h_vals
+# end
 
 function MeasureC!(Cvals::Vector{Int}, config::Vector{Int})
     @inbounds for i in 1:length(config)

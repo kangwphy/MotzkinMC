@@ -116,8 +116,13 @@ function _measure_height_tcorr_work!(obs::HeightTimeCorr, h_vals::V, t::Int, L::
             obs.mean_t_sum[idx] += current_H_mid
             obs.mean_0_sum[idx] += past_H_mid
             obs.num_lag_measurements[idx] += 1
+
+            if current_H_mid * past_H_mid<0
+                @show obs.prod_sum[1],current_H_mid , past_H_mid
+            end
         end
     end
+    
 end
 
 

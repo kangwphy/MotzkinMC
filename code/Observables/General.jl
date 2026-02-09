@@ -146,21 +146,33 @@ function measure!(obs::GeneralTCorr, sys, workspace)
     current_op_values_0 = get_values(workspace, obs.quantity_key_0; obs.quantity_kwargs_0...)
     
     # Immediately pass them to the type-stable worker function.
-    _measure_tcorr_work!(obs, workspace.t, sys.L, current_op_values_t, current_op_values_0)
+    _measure_tcorr_work!(obs, workspace.t, sys.L, sys.Tthermal, current_op_values_t, current_op_values_0)
 end
 
 # This is the type-STABLE worker function.
-function _measure_tcorr_work!(obs::GeneralTCorr, t::Int, L::Int, current_op_values_t::V, current_op_values_0::V) where {V <: AbstractVector}
+function _measure_tcorr_work!(obs::GeneralTCorr, t::Int, L::Int, Tthermal::Int, current_op_values_t::V, current_op_values_0::V) where {V <: AbstractVector}
     # Store B's result in the history buffer.
     buffer_idx = (t - 1) % obs._buffer_size + 1
     obs._history_buffer_0[:, buffer_idx] .= current_op_values_0
 
     # Loop and correlate. All operations inside this function are fast.
     for (idx, lag) in enumerate(obs.tmea)
-        if t - lag > 0 # Simplified thermalization check, assuming t starts after Tthermal
+        if t - lag > Tthermal # Simplified thermalization check, assuming t starts after Tthermal
             past_buffer_idx = (t - lag - 1) % obs._buffer_size + 1
             past_op_values_0 = view(obs._history_buffer_0, :, past_buffer_idx)
             
+            # --- DEBUG: Check if past buffer slot was actually written ---
+            past_sum = sum(past_op_values_0)
+            curr_sum = sum(current_op_values_0)
+            if obs.num_lag_measurements[idx] < 5  # Only print first few
+                println("[DEBUG TCorr] t=$t, lag=$lag, past_t=$(t-lag), " *
+                        "buffer_idx=$buffer_idx, past_buffer_idx=$past_buffer_idx, " *
+                        "sum(past)=$past_sum, sum(current)=$curr_sum, " *
+                        "all_zero_past=$(all(x->x==0, past_op_values_0)), " *
+                        "num_meas_so_far=$(obs.num_lag_measurements[idx])")
+            end
+            # --- END DEBUG ---
+
             obs.prod_sum[idx] += dot(current_op_values_t, past_op_values_0) / L
             obs.mean_t_sum[idx] += sum(current_op_values_t) / L
             obs.mean_0_sum[idx] += sum(past_op_values_0) / L

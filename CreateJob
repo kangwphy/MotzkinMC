@@ -1,0 +1,40 @@
+#!/bin/bash
+
+# --- Parameters for your jobs ---
+START_RUN_ID=1
+END_RUN_ID=1
+#---------------------------------
+
+# Make sure the logs directory exists
+mkdir -p logs
+
+echo "Submitting jobs from ID $START_RUN_ID to $END_RUN_ID..."
+for L in 10000;do
+# for L in 10;do
+T=10000000
+# Tthermal=10000000
+Tthermal=0
+for taskid in $(seq $START_RUN_ID $END_RUN_ID); do
+for S in 1; do
+for idx in 1;do
+  echo "Submitting job for task ID: $taskid"
+  
+  # Use sbatch to submit a single job for each task ID
+  sbatch --job-name=S${S}L${L} \
+          run.sh "$taskid" "$S" "$L" "$T" "$Tthermal" "$idx"
+        #  --output="logs/slurm-%j.out" \
+        #  --error="logs/slurm-%j.err" \
+        #  run.sh "$taskid"
+done
+done
+done
+done
+
+echo "All jobs submitted."
+
+
+# julia collector.jl 10 100000 0 1 2 3
+
+# for taskid in $(seq 16989824 16989829); do
+#   scancel $taskid
+# done

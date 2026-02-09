@@ -1,5 +1,4 @@
-
-function create_output_dir(L::Int, S::Int, T::Int, Tthermal::Int, run_id::Int; period_index::Int = nothing)
+function create_output_dir(L::Int, S::Int, T::Int, Tthermal::Int, run_id::Int; period_index::Union{Int,Nothing} = nothing)
     if period_index !== nothing
         dir_name = "data/L$(L)_S$(S)_T$(T)_Tthermal$(Tthermal)/run$(run_id)/period$(period_index)"
     else

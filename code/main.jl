@@ -61,15 +61,18 @@ function main()
 
     tmea0 = generate_log_spaced_times(L, z, total_points, periods; 
                                     max_scaled_time=0.5,
-                                    period_index=period_idx)
+                                    period_index=period_idx)  
+    tmea0=[0,2,5]                         
     tmea = Int64.(tmea0/interval)  
-    @show tmea0 
+
     if task == "basic"
         push!(observables_to_run, create_observable("sz_expect", L, Int64[]))
         push!(observables_to_run, create_observable("h_expect", L, Int64[]))
         push!(observables_to_run, create_observable("szsz_tcorr", L, tmea))
         push!(observables_to_run, create_observable("hh_tcorr", L, tmea))
-        push!(observables_to_run, create_observable("hd_tcorr", L, tmea))
+        push!(observables_to_run, create_observable("aa_tcorr", L, tmea))
+        push!(observables_to_run, create_observable("a_expect", L, Int64[]))
+        # push!(observables_to_run, create_observable("hd_tcorr", L, tmea))
     elseif task == "abcd"
         push!(observables_to_run, create_observable("a_expect", L, Int64[]))
         push!(observables_to_run, create_observable("b_expect", L, Int64[]))
@@ -86,22 +89,29 @@ function main()
         push!(observables_to_run, create_observable("b_expect", L, Int64[]))
         push!(observables_to_run, create_observable("aa_tcorr", L, tmea))
         push!(observables_to_run, create_observable("bb_tcorr", L, tmea))
+    elseif task == "a"
+        push!(observables_to_run, create_observable("a_expect", L, Int64[]))
+        push!(observables_to_run, create_observable("aa_tcorr", L, tmea))
+        # push!(observables_to_run, create_observable("b_expect", L, Int64[]))
     elseif task == "cd"
         push!(observables_to_run, create_observable("c_expect", L, Int64[]))
         push!(observables_to_run, create_observable("d_expect", L, Int64[]))
         push!(observables_to_run, create_observable("cc_tcorr", L, tmea))
         push!(observables_to_run, create_observable("dd_tcorr", L, tmea))
-    else
-        # push!(observables_to_run, create_observable("omn_expect", L, Int64[]; m=1, n = 0))
-        # push!(observables_to_run, create_observable("qmn_expect", L, Int64[]; m=1, n = 0))
+    elseif task == "oq"
+        # push!(observables_to_run, create_observable("omn_expect", L, Int64[]; m=1, n = 1))
+        # push!(observables_to_run, create_observable("omn_tcorr", L, tmea; m =1, n = 1))
+        # push!(observables_to_run, create_observable("qmn_expect", L, Int64[]; m=1, n = 1))
+        # push!(observables_to_run, create_observable("qmn_tcorr", L, tmea; m =1, n = 1))
+        push!(observables_to_run, create_observable("omnqmn_tcorr", L, tmea; m =1, n = 1))
         
+    elseif task == "o"
         push!(observables_to_run, create_observable("omn_expect", L, Int64[]; m=1, n = 1))
-        push!(observables_to_run, create_observable("qmn_expect", L, Int64[]; m=1, n = 1))
-
         push!(observables_to_run, create_observable("omn_tcorr", L, tmea; m =1, n = 1))
+    elseif task == "q"
+        push!(observables_to_run, create_observable("qmn_expect", L, Int64[]; m=1, n = 1))
         push!(observables_to_run, create_observable("qmn_tcorr", L, tmea; m =1, n = 1))
-
-        # push!(observables_to_run, create_observable("omnqmn_tcorr", L, tmea; m =1, n = 1))
+        
     end
 
     needs_time_obs = !isempty(tmea)
